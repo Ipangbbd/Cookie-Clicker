@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Clicker</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="public/images/cookie.png" type="image/png">
+</head>
+<body>
+    <div class="game-container">
+        <header>
+            <h1>Cookie Clicker</h1>
+            <div class="cookie-count">
+                <span id="cookie-count">0</span> cookies
+            </div>
+            <div class="cookies-per-second">
+                <span id="cookies-per-second">0.0</span> cookies per second
+            </div>
+            <div class="top-buttons">
+                <button id="stats-button" class="secondary-button"><i class="fas fa-chart-bar"></i> Stats</button>
+                <button id="achievements-button" class="secondary-button"><i class="fas fa-trophy"></i> Achievements</button>
+                <button id="settings-button" class="secondary-button"><i class="fas fa-cog"></i> Settings</button>
+            </div>
+        </header>
+        
+        <main>
+            <div class="cookie-container">
+                <div class="total-clicks">
+                    Total Clicks: <span id="total-clicks">0</span>
+                </div>
+                <img src="public/images/cookie.png" alt="Cookie" id="cookie" class="cookie">
+                <div class="multiplier-indicator" id="multiplier-indicator">
+                    <span id="click-power">x1</span>
+                </div>
+            </div>
+            <button id="shop-button" class="shop-button">Shop <i class="fas fa-shopping-cart"></i></button>
+        </main>
+        
+        <div id="shop-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Cookie Shop</h2>
+                    <span class="close-modal">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <div class="tabs">
+                        <button class="tab-button active" data-tab="buildings">Buildings</button>
+                        <button class="tab-button" data-tab="upgrades">Upgrades</button>
+                    </div>
+                    <div class="tab-content" id="buildings-tab">
+                        <div class="upgrades-container" id="buildings-container">
+                            <!-- Buildings will be added here dynamically -->
+                        </div>
+                    </div>
+                    <div class="tab-content hidden" id="upgrades-tab">
+                        <div class="upgrades-container" id="upgrades-container">
+                            <!-- Upgrades will be added here dynamically -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stats Modal -->
+        <div id="stats-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Statistics</h2>
+                    <span class="close-modal">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <div class="stats-container">
+                        <div class="stat-item">
+                            <div class="stat-label">Cookies Baked All Time:</div>
+                            <div class="stat-value" id="stats-cookies-baked">0</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">Total Clicks:</div>
+                            <div class="stat-value" id="stats-total-clicks">0</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">Buildings Owned:</div>
+                            <div class="stat-value" id="stats-buildings-owned">0</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">Hand-Made Cookies:</div>
+                            <div class="stat-value" id="stats-hand-made">0</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">Cookies per Click:</div>
+                            <div class="stat-value" id="stats-cookies-per-click">1</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">Cookies per Second:</div>
+                            <div class="stat-value" id="stats-cookies-per-second">0</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">Time Played:</div>
+                            <div class="stat-value" id="stats-time-played">0m 0s</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Achievements Modal -->
+        <div id="achievements-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Achievements</h2>
+                    <span class="close-modal">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <div class="achievements-container" id="achievements-container">
+                        <!-- Achievements will be added here dynamically -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings Modal -->
+        <div id="settings-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Settings</h2>
+                    <span class="close-modal">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <div class="settings-container">
+                        <div class="setting-item">
+                            <div class="setting-label">Sound Effects</div>
+                            <label class="switch">
+                                <input type="checkbox" id="sound-setting" checked>
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-label">Animations</div>
+                            <label class="switch">
+                                <input type="checkbox" id="animations-setting" checked>
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-label">Auto-Save</div>
+                            <label class="switch">
+                                <input type="checkbox" id="auto-save-setting" checked>
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                        <div class="button-group">
+                            <button id="save-game" class="setting-button">Save Game</button>
+                            <button id="load-game" class="setting-button">Load Game</button>
+                            <button id="reset-game" class="setting-button danger">Reset Game</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notification for feedback -->
+        <div id="notification" class="notification"></div>
+        
+        <!-- Achievement notification -->
+        <div id="achievement-notification" class="achievement-notification">
+            <i class="fas fa-trophy achievement-icon"></i>
+            <div class="achievement-content">
+                <div class="achievement-title">Achievement Unlocked!</div>
+                <div class="achievement-name" id="achievement-name"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Audio elements -->
+    <audio id="click-sound" src="public/sounds/click.mp3" preload="auto"></audio>
+    <audio id="buy-sound" src="public/sounds/buy.mp3" preload="auto"></audio>
+    <audio id="achievement-sound" src="public/sounds/achievement.mp3" preload="auto"></audio>
+    
+    <script src="js/game.js"></script>
+</body>
+</html> 
